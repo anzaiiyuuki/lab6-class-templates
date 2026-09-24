@@ -16,10 +16,10 @@ using namespace std;
  * [Complete in Part E: describe the values managed by this log.]
  *
  * Operations:
- * [Complete in Part E: describe add(value).]
- * [Complete in Part E: describe get(index) and its precondition.]
- * [Complete in Part E: describe contains(target).]
- * [Complete in Part E: describe size() and isEmpty().]
+ * [Complete in Part E: describe add(value). lo que hace add value es dependiendo de la cantidad del arreglo (CAPACITY) y suma count o suma por uno y lo guarda en ell lugar del count asinado. despues o que hace el bool es que si lo hace o no]
+ * [Complete in Part E: describe get(index) and its precondition. Dependiendo el index que poga, es el valor que va a buscar en el arreglo]
+ * [Complete in Part E: describe contains(target). Nos enrega un valor verdadero o falso dependiendo si existe]
+ * [Complete in Part E: describe size() and isEmpty().pone el valor d count en 0]
  */
 
 template <typename T>
@@ -31,7 +31,7 @@ private:
     // TODO (Part C): Add a constant for a fixed capacity of four values.
      static const int CAPACITY=4;
     // TODO (Part C): Add an array that stores values of the generic type.
-    T values[CAPACITY]
+    T values[CAPACITY];
     // TODO (Part C): Add an int that tracks how many values are stored.
     int count;
 
@@ -72,9 +72,7 @@ public:
         {
             return count == 0;    // A log is empty only when it stores no values.
         }
-
-
-    bool contains(const T& target) const;
+    bool contains(const T& target) const;   
 };
 
 // ===== Do not resolve these TODOs yet (Part D) =====
@@ -82,7 +80,8 @@ public:
 // TODO (Part D): Define MetricLog<T>::contains outside the class.
 // It receives a generic target by const reference.
 // Return true when an equal stored value exists; otherwise return false.
-bool MetriLog<T>::(const T& target) const
+template <typename T>
+bool MetricLog<T>::contains(const T& target) const
 {
     for (int index = 0; index < count; index++)
     {
@@ -110,9 +109,17 @@ int main()
     // ===== Do not resolve these TODOs yet (Part E) =====
 
     // TODO (Part E): Create a MetricLog<double> for session durations.
+    MetricLog<double> sessionduration;
     // TODO (Part E): Add two dummy duration values to that log.
+    sessionduration.add(42.5);
+    sessionduration.add(160.2);
     // TODO (Part E): Use contains with one value that exists and one that does not exist.
+    sessionduration.contains(42.5);
+    sessionduration.contains(43);
     // TODO (Part E): Print descriptive English labels for all results.
+    cout<< "First session duration: " <<sessionduration.get(0) <<endl;
+    cout<< "Duration exists: " << boolalpha<< sessionduration.contains(42.5) <<endl; // boolalpha para true or false, cool!
+    cout<< "Other duration exists: "<<boolalpha<< sessionduration.contains(160.2)  <<endl; 
 
     return 0;
 }
