@@ -82,6 +82,18 @@ public:
 // TODO (Part D): Define MetricLog<T>::contains outside the class.
 // It receives a generic target by const reference.
 // Return true when an equal stored value exists; otherwise return false.
+bool MetriLog<T>::(const T& target) const
+{
+    for (int index = 0; index < count; index++)
+    {
+        if (values[index] == target)
+        {
+            return true;     // The target value was found.
+        }
+    }
+
+    return false;            // No stored value matched the target.
+}
 
 int main()
 {
